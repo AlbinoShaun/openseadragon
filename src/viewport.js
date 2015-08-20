@@ -824,11 +824,8 @@ $.Viewport.prototype = /** @lends OpenSeadragon.Viewport.prototype */{
      */
     resize: function( newContainerSize, maintain ) {
         var oldBounds = this.getBounds(),
-            newBounds = oldBounds,
+            newBounds = oldBounds.clone(),
             widthDeltaFactor;
-
-        this.containerSize.x = newContainerSize.x;
-        this.containerSize.y = newContainerSize.y;
 
         this._containerInnerSize = new $.Point(
             Math.max(1, newContainerSize.x - (this._margins.left + this._margins.right)),
@@ -841,6 +838,9 @@ $.Viewport.prototype = /** @lends OpenSeadragon.Viewport.prototype */{
             newBounds.width  = oldBounds.width * widthDeltaFactor;
             newBounds.height = newBounds.width / this.getAspectRatio();
         }
+        
+        this.containerSize.x = newContainerSize.x;
+        this.containerSize.y = newContainerSize.y;
 
         if( this.viewer ){
             /**

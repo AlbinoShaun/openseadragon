@@ -2949,9 +2949,28 @@ function resizeViewportAndRecenter( viewer, containerSize, oldBounds, oldCenter 
 
     // We try to remove blanks as much as possible
     var worldBounds = viewer.world.getHomeBounds();
-    var newWidth = oldBounds.width <= worldBounds.width ? oldBounds.width : worldBounds.width;
-    var newHeight = oldBounds.height <= worldBounds.height ?
-        oldBounds.height : worldBounds.height;
+    var homeBounds = viewport.getHomeBounds();
+    
+    $.console.log('==============================================');
+    $.console.log('Old Bounds: ' + oldBounds);
+    $.console.log('Home Bounds: ' + viewport.getHomeBounds());
+    
+    if (oldBounds.width <= worldBounds.width) {
+        $.console.log('Using old width');
+    } else {
+        $.console.log('Using world width');
+    }
+    
+    if (oldBounds.height <= homeBounds.height) {
+        $.console.log('Using old height');
+    } else {
+        $.console.error('Using world height');
+    }
+    
+    var newWidth = oldBounds.width <= worldBounds.width ? 
+        oldBounds.width : worldBounds.width;
+    var newHeight = oldBounds.height <= homeBounds.height ?
+        oldBounds.height : homeBounds.height;
 
     var newBounds = new $.Rect(
         oldCenter.x - ( newWidth / 2.0 ),
@@ -2959,7 +2978,13 @@ function resizeViewportAndRecenter( viewer, containerSize, oldBounds, oldCenter 
         newWidth,
         newHeight
         );
+        
+    $.console.log('New Bounds before fit: ' + newBounds);
+    
     viewport.fitBounds( newBounds, true );
+    
+    $.console.log('New Bounds: ' + newBounds);
+    
 }
 
 function drawWorld( viewer ) {
