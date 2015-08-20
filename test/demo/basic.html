@@ -5,11 +5,25 @@
     <script type="text/javascript" src='../../build/openseadragon/openseadragon.js'></script>
     <script type="text/javascript" src='../lib/jquery-1.9.1.min.js'></script>
     <style type="text/css">
-
-      .openseadragon1 {
-          width: 800px;
-          height: 600px;
-      }
+    
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #wrapper {
+        width: 80%;
+        height: 80%;
+        background-color: black;
+    }
+    
+    .openseadragon1 {
+        width: 80%;
+        height: 80%;
+        background-color: white;
+    }
 
     </style>
 </head>
@@ -17,15 +31,18 @@
     <div>
         Simple demo page to show a default OpenSeadragon viewer.
     </div>
-    <div id="contentDiv" class="openseadragon1"></div>
+    <div id="wrapper">
+        <div id="contentDiv" class="openseadragon1"></div>
+    </div>
     <script type="text/javascript">
 
         var viewer = OpenSeadragon({
-            // debugMode: true,
+            debugMode: true,
             id: "contentDiv",
             prefixUrl: "../../build/openseadragon/images/",
             tileSources: "../data/testpattern.dzi",
-            showNavigator:true
+            minZoomImageRatio: 0.2,
+            defaultZoomLevel: 0.2
         });
 
     </script>

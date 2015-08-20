@@ -591,6 +591,8 @@ $.Viewport.prototype = /** @lends OpenSeadragon.Viewport.prototype */{
             newBounds = this._applyBoundaryConstraints( newBounds, immediately );
             center = newBounds.getCenter();
         }
+        
+        $.console.assert(newZoom >= this.getMinZoom());
 
         if (immediately) {
             this.panTo( center, true );
