@@ -13,16 +13,11 @@
         padding: 0;
     }
     
-    #wrapper {
-        width: 80%;
-        height: 80%;
-        background-color: black;
-    }
-    
     .openseadragon1 {
         width: 80%;
         height: 80%;
         background-color: white;
+        border: 10px solid black;
     }
 
     </style>
@@ -31,9 +26,7 @@
     <div>
         Simple demo page to show a default OpenSeadragon viewer.
     </div>
-    <div id="wrapper">
-        <div id="contentDiv" class="openseadragon1"></div>
-    </div>
+    <div id="contentDiv" class="openseadragon1"></div>
     <script type="text/javascript">
 
         var viewer = OpenSeadragon({
@@ -41,8 +34,7 @@
             id: "contentDiv",
             prefixUrl: "../../build/openseadragon/images/",
             tileSources: "../data/testpattern.dzi",
-            minZoomImageRatio: 0.2,
-            defaultZoomLevel: 0.2
+            minZoomImageRatio: 0.8
         });
 
     </script>
